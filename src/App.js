@@ -1,25 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { Card, Col, Row, Container, Button, ButtonToolbar, Figure } from'react-bootstrap';
+import Gallery from './Gallery';
 
 function App() {
+
+
+
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+
+<div className={'grey-back'}>
+<Gallery />
+</div>
+
+
+      
+        
   );
 }
 
