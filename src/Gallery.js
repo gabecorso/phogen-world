@@ -81,7 +81,7 @@ render() {
 		<React.Fragment>
 		<Container className={"wrap"} fluid>
         <Row className='row1' style={{padding: '0px'}}>
-          <Col noGutters={true} style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
+          <Col style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
 	         		
 				<Image fluid 
 						className={'video-mask'} 

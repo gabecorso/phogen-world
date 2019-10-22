@@ -7,9 +7,9 @@ function App() {
 
   return (
 	<div className={'phogen-app'}>
-	<span class="spotify-link">...check out spotify?</span>
+	<span className="spotify-link">...check out spotify?</span>
 		<Gallery />
-	<span class="soundcloud-link">...check out soundcloud?</span>
+	<span className="soundcloud-link">...check out soundcloud?</span>
 	</div>     
   );
 }
