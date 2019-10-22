@@ -3,13 +3,13 @@ import _ from 'lodash';
 
 import { Card, Col, Row, Container, Button, ButtonToolbar, Image, Figure } from'react-bootstrap';
 
- // 			<svg>
-						//   <defs>
-						//     <clipPath id="clipping">
-						//       <circle cx="284" cy="213" r="213" />
-						//     </clipPath>
-						//   </defs>
-						// </svg>
+// 			<svg>
+//   <defs>
+//     <clipPath id="clipping">
+//       <circle cx="284" cy="213" r="213" />
+//     </clipPath>
+//   </defs>
+// </svg>
 var myVideo = document.getElementById("video1"); 
 class Gallery extends React.Component {
 
@@ -23,29 +23,6 @@ class Gallery extends React.Component {
 
 		};
 	}
-
-
-
-
-	mouseOverTreatment(func) {
-
-	if(typeof(func) != 'function')
-		return;
-
-
-   // If they were already a programmed setTimeout
-   // stop it, and run a new one
-   if (this.timeoutOnMouseOver) {
-     clearTimeout(this.timeoutOnMouseOver);
-   }
-
-   this.timeoutOnMouseOver = setTimeout(() => {
-      func();
-
-      this.timeoutOnMouseOver = false;
-   }, 500);
-}
-
 
 	playPause(ref1, show) { 
 
