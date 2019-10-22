@@ -22,7 +22,7 @@ video {
 .grey-back {
 		background-color: gray;
 }
-.video-mask {
+.video-mask:hover {
 
 
 
@@ -30,6 +30,14 @@ video {
 
 }
 
+@keyframes grow {
+  0% {
+  
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}
 
 
 .card {

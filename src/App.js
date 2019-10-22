@@ -5,23 +5,10 @@ import Gallery from './Gallery';
 
 function App() {
 
-
-
-
-
-
-
-
   return (
-    
-
-<div className={'grey-back'}>
-<Gallery />
-</div>
-
-
-      
-        
+	<div className={'grey-back'}>
+		<Gallery />
+	</div>     
   );
 }
 
