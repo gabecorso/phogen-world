@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { Card, Col, Row, Container, Button, ButtonToolbar, Image, Figure } from'react-bootstrap';
+import { Card, Col, Row, Container, Button, ButtonToolbar, Image, Figure, Modal } from'react-bootstrap';
 
 // 			<svg>
 //   <defs>
@@ -19,6 +19,7 @@ class Gallery extends React.Component {
 		this.state = {
 			hover: false,
 			show1: false,
+			show_modal: true,
 			dimensions: {}
 
 		};
@@ -70,6 +71,8 @@ class Gallery extends React.Component {
 			}
 			
 	}
+
+
 
 render() {
 
@@ -292,6 +295,30 @@ render() {
 		        
 		          
 		      </Container>
+		      <Modal
+		     
+		      show={this.state.show_modal}
+		      onHide={() => {this.setState({show_modal: false})}}
+			    
+			      size="lg"
+			      aria-labelledby="contained-modal-title-vcenter"
+			      centered
+			    >
+			      <Modal.Header closeButton>
+			        <Modal.Title id="contained-modal-title-vcenter">
+			          &#127911;
+			        </Modal.Title>
+			      </Modal.Header>
+			      <Modal.Body>
+			        <h4>Welcome to phogen-world, pardon our dust... &#128565;</h4>
+			        <p>
+			          
+			        </p>
+			      </Modal.Body>
+			      <Modal.Footer>
+			        <Button onClick={() => {this.setState({show_modal: false})}}>Close</Button>
+			      </Modal.Footer>
+			    </Modal>
 
 
 
