@@ -6,8 +6,10 @@ import Gallery from './Gallery';
 function App() {
 
   return (
-	<div className={'grey-back'}>
+	<div className={'phogen-app'}>
+	<span class="spotify-link">...check out spotify?</span>
 		<Gallery />
+	<span class="soundcloud-link">...check out soundcloud?</span>
 	</div>     
   );
 }
