@@ -1,21 +1,11 @@
 import React from 'react';
-import _ from 'lodash';
+import { Col, Row, Container, Button, Modal } from'react-bootstrap';
+import GalleryItem from "./GalleryItem";
 
-import { Card, Col, Row, Container, Button, ButtonToolbar, Image, Figure, Modal } from'react-bootstrap';
-
-// 			<svg>
-//   <defs>
-//     <clipPath id="clipping">
-//       <circle cx="284" cy="213" r="213" />
-//     </clipPath>
-//   </defs>
-// </svg>
-var myVideo = document.getElementById("video1"); 
 class Gallery extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
-
 		this.state = {
 			hover: false,
 			show1: false,
@@ -23,6 +13,10 @@ class Gallery extends React.Component {
 			dimensions: {}
 
 		};
+		this.handleEnterImage = this.handleEnterImage.bind(this);
+		this.handleLeaveImage = this.handleLeaveImage.bind(this);
+		this.handleEnterVideo = this.handleEnterVideo.bind(this);
+		this.handleLeaveVideo = this.handleLeaveVideo.bind(this);
 	}
 
 	playPause(ref1, show) { 
@@ -72,256 +66,65 @@ class Gallery extends React.Component {
 			
 	}
 
-
+	handleEnterImage(vidRef, i, timeout) {
+		this.setState({hover: i}); setTimeout(() => {this.playPause(vidRef, i)}, timeout)
+	}
+	handleLeaveImage() {
+		this.setState({hover: false});
+	}
+	handleEnterVideo( i) {
+		this.setState({hover: i})
+	}
+	handleLeaveVideo(vidRef, i) {
+		this.playPause(vidRef, i);
+	}
 
 render() {
-
-	
-	const {width, height} = this.state.dimensions;
-	const timeout = 1000;
-	
+	let image_array = ['https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_1.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_2.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_3.png',
+						'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_4.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_5.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_6.png',
+						'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_7.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_8.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_9.png',
+						'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_10.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_11.png', 'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_12.png'];
+	let video_array = ['https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov', 'https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov', 'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing',
+						'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing', 'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing',	'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing',
+						'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing', 'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing', 'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing',
+						'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing', 'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing',	'https://drive.google.com/file/d/1tx7x5BjwQ2Wus_RexHv5eZpHAIsKZYFe/view?usp=sharing'];
+	let items = new Array(12).fill(1);
 	return (
 		<React.Fragment>
-		<Container className={"wrap"} fluid>
-        <Row className='row1' style={{padding: '0px'}}>
-          <Col style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-	         		
-				<Image fluid 
-						className={'video-mask'} 
-						style={{  display: (this.state.show1 ? "none" : 'block')}} 
-						onMouseEnter={(e) => {this.setState({hover: 1}); setTimeout(() => {this.playPause(this.refs.Video1, 1)}, timeout)}} 
-   				  		onMouseLeave={(e) => {this.setState({hover: false})}} 
-    			        ref={'Cover1'} 
-    			        src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_1.png'} />
-
-	            <video onMouseLeave={(e) => {this.playPause(this.refs.Video1, 1);}} 
-            		   onMouseEnter={(e) => {this.setState({hover: 1});}}
-			            style={{height:  '100%', width: '100%', display: (this.state.show1 ? "block" : 'none')}}   
-			            className={'video-mask tryut'} 
-			            ref="Video1">
-				  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-					Your browser does not support the video tag.
-				</video>
-					
-	     </Col>
- 
-    	<Col style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-         
-           <Image fluid 
-   				  onMouseEnter={(e) => {this.setState({hover: 2}); setTimeout(() => {this.playPause(this.refs.Video2, 2)}, timeout)}} 
-   				  onMouseLeave={(e) => {this.setState({hover: false})}} 
-				  className={'video-mask'}  
-				  style={{  display: (this.state.show2 ? "none" : 'block')}}
-				   ref={'Cover2'}  
-				   src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_2.png'} />
-			
-            <video onMouseLeave={(e) => {this.playPause(this.refs.Video2, 2);}} 
-            		onMouseEnter={(e) => {this.setState({hover: 2});}}
-		            style={{height:  '100%', width: '100%', display: (this.state.show2 ? "block" : 'none')}} 
-		            className={'video-mask'}  
-		            ref="Video2">
-			  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-				Your browser does not support the video tag.
-			</video>
-			
-      	</Col>
-
-          <Col style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-        			
-           <Image fluid 
-       			  onMouseEnter={(e) => {this.setState({hover: 3}); setTimeout(() => {this.playPause(this.refs.Video3, 3)}, timeout)}} 
-   				  onMouseLeave={(e) => {this.setState({hover: false})}} 
-				  className={'video-mask'}  
-				  style={{ display: (this.state.show3 ? "none" : 'block')}} 
-				  ref={'Cover3'}  
-				  src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_3.png'} />
-
-            <video onMouseLeave={(e) => {this.playPause(this.refs.Video3, 3);}} 
-            		onMouseEnter={(e) => {this.setState({hover: 3});}}
-			        style={{height:  '100%', width: '100%', display: (this.state.show3 ? "block" : 'none')}} 
-			        className={'video-mask'} 
-			        ref="Video3">
-			  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-				Your browser does not support the video tag.
-			</video>
-			
-		    </Col>
-        </Row>
-
-        <Row>
-          <Col style={{padding: '0px', marginTop: '-6px'}}  xs={4} sm={4} md={4} lg={4} xl={4}>
-	       
-		    			
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 4}); setTimeout(() => {this.playPause(this.refs.Video4, 4)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-		           										  className={'video-mask'}  
-		           										  style={{ display: (this.state.show4 ? "none" : 'block')}} 
-		           										  ref={'Cover4'}  
-		           										  src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_4.png'} />
-						
-			            <video onMouseEnter={(e) => {this.setState({hover: 4});}}
-			            onMouseLeave={(e) => {this.playPause(this.refs.Video4, 4); 
-			            							 this.setState({hover: false}); console.log(this.state.hover);}} style={{height:  '100%', width: '100%', display: (this.state.show4 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video4">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-					
-		          </Col>
-
-		          
-		  
-		   
-          <Col style={{padding: '0px',  marginTop: '-6px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-         
-		    			
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 5}); setTimeout(() => {this.playPause(this.refs.Video5, 5)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-		           										  className={'video-mask'}  
-		           										  style={{ display: (this.state.show5 ? "none" : 'block')}} 
-		           										  ref={'Cover5'}  
-		           										  src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_5.png'} />
-						
-			            <video onMouseEnter={(e) => {this.setState({hover: 5});}}
-			             onMouseLeave={(e) => {this.playPause(this.refs.Video5, 5); 
-			            							 this.setState({hover: false}); console.log(this.state.hover);}} style={{height:  '100%', width: '100%', display: (this.state.show5 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video5">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-					
-		          </Col>
-
-		  
-
-          <Col style={{padding: '0px',  marginTop: '-6px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-         
-		    			
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 6}); setTimeout(() => {this.playPause(this.refs.Video6, 6)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-		           										  className={'video-mask'}  
-		           										  style={{ display: (this.state.show6 ? "none" : 'block')}} 
-		           										  ref={'Cover6'}  
-		           										  src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_6.png'} />
-						
-			            <video onMouseEnter={(e) => {this.setState({hover: 6});}}
-			            onMouseLeave={(e) => {this.playPause(this.refs.Video6, 6); 
-			            							 this.setState({hover: false});}} style={{height:  '100%', width: '100%', display: (this.state.show6 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video6">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-				
-		          </Col>
-
-
-
-		          
-		  
-		          
+			<Container className={"wrap"} fluid>
+				<Row className='row1' style={{padding: '0px'}}>
+				  {items && items.map((item, key) => {
+					return (
+						<Col style={{padding: '0px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
+							<GalleryItem
+								show={this.state[`show${key+1}`]}
+								i={key+1}
+								image_arr={image_array}
+								video_arr={video_array}
+								handle_enter_image={this.handleEnterImage}
+								handle_leave_image={this.handleLeaveImage}
+								handle_leave_video={this.handleLeaveVideo}
+								handle_enter_video={this.handleEnterVideo} />
+						</Col>
+					)
+				  })}
 		        </Row>
-		        <Row>
-          <Col style={{padding: '0px',  marginTop: '-6px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-	         
-		    			
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 7}); setTimeout(() => {this.playPause(this.refs.Video7, 7)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-       										  	          className={'video-mask'}  
-       										  	          style={{ display: (this.state.show7 ? "none" : 'block')}} 
-       										  	          ref={'Cover7'}  
-       										  	          src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_7.png'} />
-						
-			            <video onMouseEnter={(e) => {this.setState({hover: 7});}}
-			            onMouseLeave={(e) => {this.playPause(this.refs.Video7, 7); 
-			            							 this.setState({hover: false}); }} style={{height:  '100%', width: '100%', display: (this.state.show7 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video7">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-					
-		          </Col>
-
-
-
-		          
-		  
-		   
-          <Col style={{padding: '0px',  marginTop: '-6px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-         
-		    			
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 8}); setTimeout(() => {this.playPause(this.refs.Video8, 8)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-       										  	          className={'video-mask'}  
-       										  	          style={{ display: (this.state.show8 ? "none" : 'block')}} 
-       										  	          ref={'Cover8'}  
-       										  	          src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_8.png'} />
-						
-			            <video onMouseLeave={(e) => {this.playPause(this.refs.Video8, 8); 
-			            							 this.setState({hover: false}); }} onMouseEnter={(e) => {this.setState({hover: 8});}}
-			            							 style={{height:  '100%', width: '100%', display: (this.state.show8 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video8">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-				
-		          </Col>
-
-
-
-		          
-		  
-
-          <Col style={{padding: '0px',  marginTop: '-6px'}} xs={4} sm={4} md={4} lg={4} xl={4}>
-         
-		    		
-			           <Image fluid onMouseEnter={(e) => {this.setState({hover: 9}); setTimeout(() => {this.playPause(this.refs.Video9, 9)}, timeout)}} 
-   				  					onMouseLeave={(e) => {this.setState({hover: false})}} 
-       										  	          className={'video-mask'}  
-       										  	          style={{ display: (this.state.show9 ? "none" : 'block')}} 
-       										  	          ref={'Cover9'}  
-       										  	          src={'https://phogen-world.s3-us-west-2.amazonaws.com/PHOGENLP_COLLAGE_9.png'} />
-						
-			            <video onMouseLeave={(e) => {this.playPause(this.refs.Video9, 9); 
-			            							 this.setState({hover: false});}}
-			            							 onMouseEnter={(e) => {this.setState({hover: 9});}}
-			            							  style={{height:  '100%', width: '100%', display: (this.state.show9 ? "block" : 'none')}} className={'video-mask'} width="320" height="240" ref="Video9">
-						  <source src="https://phogen-world.s3-us-west-2.amazonaws.com/ITALYGABESTHEME.mpeg.mov" type="video/mp4"  />
-						Your browser does not support the video tag.
-						</video>
-					
-		          </Col>
-
-
-
-		          
-		  
-		          
-		        </Row>
-		        
-		          
 		      </Container>
-		      <Modal
-		     
-		      show={this.state.show_modal}
-		      onHide={() => {this.setState({show_modal: false})}}
-			    
-			      size="lg"
-			      aria-labelledby="contained-modal-title-vcenter"
-			      centered
-			    >
-			      <Modal.Header closeButton>
+
+		      <Modal show={this.state.show_modal} onHide={() => {this.setState({show_modal: false})}} size="lg"
+					 aria-labelledby="contained-modal-title-vcenter" centered>
+				  <Modal.Header closeButton>
 			        <Modal.Title id="contained-modal-title-vcenter">
 			          &#127911;
 			        </Modal.Title>
 			      </Modal.Header>
 			      <Modal.Body>
 			        <h4>Welcome to phogen-world, pardon our dust... &#128565;</h4>
-			        <p>
-			          
-			        </p>
 			      </Modal.Body>
 			      <Modal.Footer>
 			        <Button onClick={() => {this.setState({show_modal: false})}}>Close</Button>
 			      </Modal.Footer>
 			    </Modal>
-
-
-
 		</React.Fragment>
 
 		);
