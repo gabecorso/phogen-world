@@ -6,7 +6,7 @@ import Gallery from './Gallery';
 function App() {
 
   return (
-	<div className={'phogen-app'}>
+	<div  className={'phogen-app'}>
 		<Gallery />
 	</div>     
   );

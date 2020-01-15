@@ -22,10 +22,11 @@ class GalleryItem extends React.Component {
         const timeout = 1000;
 
         return (
-            <React.Fragment>
+            <div className={'item-wrapper'}>
+
                 <Image fluid
                        className={'video-mask'}
-                       style={{  display: (show ? "none" : 'block')}}
+                       style={{height: '100%', width: '100%',  display: (show ? "none" : 'block')}}
                        onMouseEnter={(e) => {handle_enter_image(this.refs[`Video${i}`], i, timeout)}}
                        onMouseLeave={(e) => {handle_leave_image(false)}}
                        ref={`Cover${i}`}
@@ -38,7 +39,7 @@ class GalleryItem extends React.Component {
                     <source src={`${video_arr[i-1]}`} type="video/mp4"  />
                     Your browser does not support the video tag.
                 </video>
-            </React.Fragment>
+            </div>
 
         );
     }

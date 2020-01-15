@@ -21,8 +21,7 @@ video {
 }
 
 .phogen-app {
-
-  min-height: 100vh;
+height: 100vh;
 
 }
 .soundcloud-link {
@@ -74,9 +73,6 @@ video {
 
 }
 
-.row1 {
-  height: 33%vh;
-}
 
 @keyframes grow {
   0% {
@@ -92,4 +88,8 @@ video {
 
 		background-color: gray;
 
+}
+
+.item-wrapper {
+    height: 100%;
 }
